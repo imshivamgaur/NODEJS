@@ -1,0 +1,4 @@
+Hey this file is build with fs FileSync method
+This is new data added to the file with the help of appendFileSync method
+This is new data added to the file with the help of appendFileSync method
+This is new data added to the file with the help of appendFileSync method
