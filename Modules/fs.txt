@@ -86,16 +86,24 @@ function makeFolder() {
 
 //*============ Copy the content of fs.js in a new file js.text ==================
 
-// const data = fs.readFileSync("../Modules/fs.js", "utf-8");
-// console.log(data);
+const data = fs.readFileSync("../Modules/fs.js", "utf-8");
+console.log(data);
 
-// fs.writeFileSync("./fs.txt", data);
-// console.log("file copy pasted");
+fs.writeFileSync("./fs.txt", data);
+console.log("file copy pasted");
+
+
 
 //& Inbuild fs module for copy paste
 // method name ==> copyFileSync();
 // sytax ==> copyFileSync("src", "dest");
 fs.copyFileSync("./fs.js", "../app.txt");
+
+
+
+
+
+
 
 //! ================== Deleting a file =======================
 
@@ -104,25 +112,3 @@ fs.copyFileSync("./fs.js", "../app.txt");
 
 // fs.rmdirSync("./School");
 // console.log("file deleted successfully");
-
-// fs.rmdirSync("./project", { recursive: true });
-
-//! =================== Renaming the file =================
-
-// method name = renameSync();
-// syntax ==> renameSync("old name", "new name");
-// fs.renameSync("./demo.js", "new.js");
-
-//* ========================= fs operation asynchronously (using callbacks) =======================
-
-//! ================ creating a file ===============
-// method name ==> writeFile();
-// syntax ==> writeFile("path", "data", function)
-
-console.log(1);
-console.log(2);
-fs.writeFile("./demo.js", "Hello hunny bunny", (err) => {
-  if (err) console.log(err);
-  console.log("file created");
-});
-console.log(3);
