@@ -1,4 +1,4 @@
-let fs = require("fs");
+// let fs = require("fs");
 // let fs = require("node:fs")
 // "node: " ==> it tells us that the module is build in with node.
 
@@ -70,17 +70,17 @@ let fs = require("fs");
 // fs.mkdirSync("./School");
 // console.log("folder created");
 
-function makeFolder() {
-  fs.mkdirSync("./project");
-  console.log("folder created");
-  fs.mkdirSync("./project/src");
-  console.log("folder created");
-  fs.writeFileSync(
-    "./project/src/app.js",
-    "this file is created by makeFolder func which is in fs.js"
-  );
-  console.log("file created");
-}
+// function makeFolder() {
+//   fs.mkdirSync("./project");
+//   console.log("folder created");
+//   fs.mkdirSync("./project/src");
+//   console.log("folder created");
+//   fs.writeFileSync(
+//     "./project/src/app.js",
+//     "this file is created by makeFolder func which is in fs.js"
+//   );
+//   console.log("file created");
+// }
 
 // makeFolder();
 
@@ -95,7 +95,7 @@ function makeFolder() {
 //& Inbuild fs module for copy paste
 // method name ==> copyFileSync();
 // sytax ==> copyFileSync("src", "dest");
-fs.copyFileSync("./fs.js", "../app.txt");
+// fs.copyFileSync("./fs.js", "../app.txt");
 
 //! ================== Deleting a file =======================
 
@@ -115,14 +115,92 @@ fs.copyFileSync("./fs.js", "../app.txt");
 
 //* ========================= fs operation asynchronously (using callbacks) =======================
 
-//! ================ creating a file ===============
+//! 1) ================ creating a file ===============
 // method name ==> writeFile();
-// syntax ==> writeFile("path", "data", function)
+// syntax ==> writeFile("path", "data", callback)
 
-console.log(1);
-console.log(2);
-fs.writeFile("./demo.js", "Hello hunny bunny", (err) => {
-  if (err) console.log(err);
-  console.log("file created");
-});
-console.log(3);
+// console.log(1);
+// console.log(2);
+// fs.writeFile("./demo.js", "new Changes", (err) => {
+//   if (err) console.log(err);
+//   console.log("file created");
+// });
+// console.log(3);
+
+//! 2) ================ Reading a file ===============
+// method name ==> readFile();
+// syntax ==> readFile("path", "data", callback)
+
+// console.log(1);
+// console.log(2);
+// fs.readFile("./fs.txt", "utf-8", (err, res) => {
+//   if (err) console.log(err);
+//   console.log("File reading complete");
+//   console.log("data: ", res);
+// });
+// console.log(3);
+
+//! 3) ================ appending a file ===============
+// method name ==> appendFile();
+// sytax ==> appendFile("path", "data", callback)
+
+// console.log(1);
+// console.log(2);
+// fs.appendFile(
+//   "./demo.js",
+//   "\n //New line adding through appendFile()",
+//   (err, res) => {
+//     if (err) console.log(err);
+//     console.log("file appended");
+//   }
+// );
+// console.log(3);
+
+//! 4) ================ Deleting a file ===============
+// method name ===> unlink();
+
+//! 5) ================ Creating a Folder ===============
+// method name ===> mkdir();
+
+//! 6) ================ Deleting a folder ===============
+// method name ===> rmdir();
+
+//! 7) ================ Renaming  ===============
+// method name ===> rename();
+
+//* ========================= fs operation asynchronously (using promises --> then/catch ) =======================
+
+let fs = require("fs/promises");
+
+//! 1) ================ Creating a file  ===============
+// method name ==> writeFile();
+// format ==> writeFile("path/name", "data").then().catch()
+
+// const output = fs.writeFile(
+//   "./new.js",
+//   "\n //hello doston kya haal chal its an promise"
+// );
+// console.log(output);
+
+// output
+//   .then(() => {
+//     console.log("file created");
+//   })
+//   .catch((err) => console.log(err));
+
+//! 2) ================ Reading a file  ===============
+// method name ==> readFile();
+// format ==> readFile("path/name", "data").then().catch()
+
+const output = fs.readFile("./index.js", "utf-8");
+
+output
+  .then((data) => {
+    console.log("file reading complete");
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+//! 3) ================ appending a file  ===============
