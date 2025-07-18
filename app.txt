@@ -117,12 +117,41 @@ fs.copyFileSync("./fs.js", "../app.txt");
 
 //! ================ creating a file ===============
 // method name ==> writeFile();
-// syntax ==> writeFile("path", "data", function)
+// syntax ==> writeFile("path", "data", callback)
+
+// console.log(1);
+// console.log(2);
+// fs.writeFile("./demo.js", "new Changes", (err) => {
+//   if (err) console.log(err);
+//   console.log("file created");
+// });
+// console.log(3);
+
+//! ================ Reading a file ===============
+// method name ==> readFile();
+// syntax ==> readFile("path", "data", callback)
+
+// console.log(1);
+// console.log(2);
+// fs.readFile("./fs.txt", "utf-8", (err, res) => {
+//   if (err) console.log(err);
+//   console.log("File reading complete");
+//   console.log("data: ", res);
+// });
+// console.log(3);
+
+//! ================ appending a file ===============
+// method name ==> appendFile();
+// sytax ==> appendFile("path", "data", callback)
 
 console.log(1);
 console.log(2);
-fs.writeFile("./demo.js", "Hello hunny bunny", (err) => {
-  if (err) console.log(err);
-  console.log("file created");
-});
+fs.appendFile(
+  "./demo.js",
+  "\n //New line adding through appendFile()",
+  (err, res) => {
+    if (err) console.log(err);
+    console.log("file appended");
+  }
+);
 console.log(3);

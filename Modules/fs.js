@@ -170,7 +170,7 @@
 
 //* ========================= fs operation asynchronously (using promises --> then/catch ) =======================
 
-let fs = require("fs/promises");
+// let fs = require("fs/promises");
 
 //! 1) ================ Creating a file  ===============
 // method name ==> writeFile();
@@ -192,15 +192,55 @@ let fs = require("fs/promises");
 // method name ==> readFile();
 // format ==> readFile("path/name", "data").then().catch()
 
-const output = fs.readFile("./index.js", "utf-8");
+// const output = fs.readFile("./index.js", "utf-8");
 
-output
-  .then((data) => {
-    console.log("file reading complete");
-    console.log(data);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// output
+//   .then((data) => {
+//     console.log("file reading complete");
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 //! 3) ================ appending a file  ===============
+
+//*) ================ Coping a file using async/await  ===============
+
+async function copyFile() {
+  try {
+    const data = await fs.readFile("./new.js", "utf-8");
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// copyFile();
+
+//* --- Buffer and Streams
+
+const fs = require("fs");
+
+//& buffer ==> it is a similar to any array but it is used to store binary data and is fixed in size. Once the operation is done, buffer will be destroyed.
+
+//& Streams ==> transferring data from source to destination in continous chunks. It is used to handle large amounts of data efficeintly without loading the enitre data into memory at once.
+
+//? In NodeJs we have 4 types of streams -->
+//! 1) readable stream --> we can read the data from source in continous chunks.
+// method name ==> createReadStream();
+
+
+const op = fs.createReadStream("./fs.js", {
+  encoding: "utf-8",
+  highWaterMark: 100,
+});
+
+op.on("data", (chunks) => {
+  console.group(`chunk read --> ${chunks.length} ---> ${chunks.toString()}`);
+});
+
+
+//! 2) writeable stream
+//! 3) duplex stream
+//! 4) transfrom stream
