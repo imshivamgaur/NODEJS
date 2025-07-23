@@ -230,17 +230,33 @@ const fs = require("fs");
 //! 1) readable stream --> we can read the data from source in continous chunks.
 // method name ==> createReadStream();
 
+// const op = fs.createReadStream("./fs.js", {
+//   encoding: "utf-8",
+//   highWaterMark: 80,
+// });
 
-const op = fs.createReadStream("./fs.js", {
-  encoding: "utf-8",
-  highWaterMark: 100,
-});
+// op.on("data", (chunks) => {
+//   console.group(`chunk read --> ${chunks.length} ---> ${chunks.toString()}`);
+// });
 
-op.on("data", (chunks) => {
-  console.group(`chunk read --> ${chunks.length} ---> ${chunks.toString()}`);
-});
+//! 2) writeable strea --> we can write daata from source in continous chunks.
+// method name ==> createWriteStream();
 
+// let op = fs.createWriteStream("./a.txt", "utf-8");
+// op.write("This is the data for a.txt", () => {
+//   console.log("data has been written");
+// });
 
-//! 2) writeable stream
 //! 3) duplex stream
+
+let readContent = fs.createReadStream("./fs.js", {
+  encoding: "utf-8",
+  highWaterMark: 80,
+});
+let writeContent = fs.createWriteStream("./a.txt");
+//& pipe() ==> it connects source and destination streams, which is used to transfer continous chunks.
+
+readContent.pipe(writeContent);
+console.log("data has been written to a.txt");
+
 //! 4) transfrom stream
